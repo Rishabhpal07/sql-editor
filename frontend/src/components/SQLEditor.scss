@@ -1,0 +1,48 @@
+@import '../App.scss';
+
+.sql-editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border: 1px solid $color-border;
+  border-radius: 0.5rem;
+  overflow: hidden;
+
+  .editor-header {
+    @include flexbox(row, space-between, center);
+    padding: $spacing-md;
+    border-bottom: 1px solid $color-border;
+    background-color:gray;
+    flex-shrink: 0;
+
+    h3 {
+      margin: 0;
+      font-size: $font-size-lg;
+      color: $color-text;
+    }
+
+    .btn-execute {
+      min-width: 120px;
+      padding: $spacing-sm $spacing-lg;
+      font-size: $font-size-sm;
+      font-weight: 500;
+
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        @include shadow-md;
+      }
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  // Monaco editor wrapper
+  .editor-wrapper {
+    flex: 1;
+    min-height: 10rem;
+    overflow: hidden;
+  }
+}

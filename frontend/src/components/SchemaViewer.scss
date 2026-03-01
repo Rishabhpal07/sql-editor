@@ -1,0 +1,98 @@
+@import '../App.scss';
+
+.schema-viewer {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: 0.5rem;
+  overflow-y: auto;
+
+  h3 {
+    margin: 0;
+    padding: $spacing-md;
+    border-bottom: 1px solid $color-border;
+    background-color: $color-bg-secondary;
+    font-size: $font-size-lg;
+  }
+
+  .tables-list {
+    padding: $spacing-md;
+  }
+
+  .table-section {
+    margin-bottom: $spacing-md;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .table-header {
+    width: 100%;
+    padding: $spacing-sm $spacing-md;
+    background-color: $color-bg-secondary;
+    border: 1px solid $color-border;
+    border-radius: 0.375rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.2s ease;
+
+    @include flexbox(row, flex-start, center);
+    gap: $spacing-sm;
+
+    &:hover {
+      background-color: darken($color-bg-secondary, 5%);
+      @include shadow-sm;
+    }
+
+    .table-icon {
+      display: inline-block;
+      min-width: 20px;
+      font-size: $font-size-sm;
+      color: $color-text-light;
+    }
+
+    .table-name {
+      font-weight: 600;
+      color: $color-text;
+    }
+  }
+
+  .columns-list {
+    margin-top: $spacing-sm;
+    margin-left: $spacing-md;
+    padding-left: $spacing-md;
+    border-left: 2px solid $color-primary;
+  }
+
+  .column-item {
+    padding: $spacing-sm $spacing-md;
+    margin-bottom: $spacing-sm;
+    background-color: $color-bg-secondary;
+    border-radius: 0.375rem;
+    border-left: 3px solid $color-primary;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .column-name {
+    font-weight: 600;
+    color: $color-text;
+    font-family: 'Courier New', monospace;
+  }
+
+  .column-type {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    font-family: 'Courier New', monospace;
+    margin-top: $spacing-xs;
+  }
+
+  .column-description {
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    margin-top: $spacing-xs;
+    font-style: italic;
+  }
+}

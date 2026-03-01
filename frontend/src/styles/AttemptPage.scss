@@ -1,0 +1,199 @@
+@import '../App.scss';
+
+
+.attempt-page {
+  height: 120vh;
+  background-color: $color-bg-secondary;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.attempt-header {
+  background-color: $color-bg;
+  border-bottom: 1px solid $color-border;
+  padding: $spacing-lg $spacing-md;
+  flex-shrink: 0;
+
+  @include flexbox(row, flex-start, center);
+  gap: $spacing-lg;
+
+  .btn-back {
+    @include button-base;
+    background-color: $color-bg-secondary;
+    color: $color-text;
+    border: 1px solid $color-border;
+
+    &:hover {
+      background-color: $color-border;
+    }
+  }
+
+  .header-title {
+    @include flexbox(row, flex-start, center);
+    gap: $spacing-md;
+    flex: 1;
+
+    h1 {
+      margin: 0;
+      font-size: $font-size-2xl;
+      color: $color-text;
+    }
+
+    .difficulty-badge {
+      padding: $spacing-xs $spacing-sm;
+      border-radius: 4px;
+      font-size: $font-size-sm;
+      font-weight: 600;
+
+      &.difficulty-easy {
+        background-color: lighten($color-success, 35%);
+        color: darken($color-success, 20%);
+      }
+
+      &.difficulty-medium {
+        background-color: lighten($color-warning, 35%);
+        color: darken($color-warning, 20%);
+      }
+
+      &.difficulty-hard {
+        background-color: lighten($color-error, 35%);
+        color: darken($color-error, 20%);
+      }
+    }
+  }
+}
+
+.attempt-container {
+  display: flex;
+  flex: 1;
+  gap: $spacing-lg;
+  padding: $spacing-lg;
+  overflow: hidden;
+}
+
+.left-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.right-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+  min-width: 0;
+  min-height: 0;
+}
+
+
+.question-section {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  padding: $spacing-lg;
+  flex-shrink: 0;
+
+  h2 {
+    margin: 0 0 $spacing-md 0;
+    color: $color-text;
+  }
+
+  .description-section {
+    margin-top: $spacing-lg;
+    padding-top: $spacing-md;
+    border-top: 1px solid $color-border;
+
+    h3 {
+      margin: 0 0 $spacing-sm 0;
+      color: $color-text-light;
+    }
+
+    p {
+      margin: 0;
+      color: $color-text-light;
+      line-height: 1.6;
+    }
+  }
+}
+
+
+.schema-section,
+.preview-section {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.sql-editor-container {
+  flex: 0 0 50%;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: gray;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.results-container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.hint-section {
+  background-color: #fffbeb;
+  border: 2px solid #fbbf24;
+  border-radius: 8px;
+  padding: $spacing-lg;
+  flex-shrink: 0;
+
+  .hint-header {
+    @include flexbox(row, space-between, center);
+    margin-bottom: $spacing-md;
+
+    h3 {
+      margin: 0;
+      color: #a16207;
+    }
+
+    .btn-close-hint {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      color: #a16207;
+    }
+  }
+
+  .hint-content {
+    margin: 0;
+    color: #92400e;
+    line-height: 1.6;
+  }
+}
+
+.btn-get-hint {
+  @include button-base;
+  background-color: #fbbf24;
+  color: #92400e;
+  font-weight: 600;
+
+  &:hover {
+    background-color: #f59e0b;
+  }
+}
+
+@media (max-width: 900px) {
+  .attempt-container {
+    flex-direction: column;
+  }
+}

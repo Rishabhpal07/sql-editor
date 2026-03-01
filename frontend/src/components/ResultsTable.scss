@@ -1,0 +1,271 @@
+@import '../App.scss';
+
+.results-panel {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+  &.loading {
+    @include flexbox(column, center, center);
+    justify-content: center;
+    padding: $spacing-2xl;
+
+    .loading-spinner {
+      font-size: 3rem;
+      animation: spin 1s linear infinite;
+      margin-bottom: $spacing-lg;
+    }
+
+    p {
+      margin: 0;
+      color: $color-text-light;
+    }
+  }
+
+  &.empty {
+    @include flexbox(column, center, center);
+    justify-content: center;
+    padding: $spacing-2xl;
+    background-color: $color-bg-secondary;
+    border-style: dashed;
+
+    p {
+      margin: 0;
+      color: $color-text-light;
+      font-style: italic;
+    }
+  }
+
+  &.error {
+    border-color: $color-error;
+    background-color: lighten($color-error, 45%);
+
+    .error-header {
+      border-bottom: 1px solid $color-error;
+      padding: $spacing-md;
+      flex-shrink: 0;
+
+      h4 {
+        margin: 0;
+        color: darken($color-error, 20%);
+      }
+    }
+
+    .error-content {
+      padding: $spacing-lg;
+      overflow-y: auto;
+      flex: 1;
+      min-height: 0;
+
+      .error-message {
+        margin: 0;
+        color: darken($color-error, 15%);
+        font-family: 'Courier New', monospace;
+        font-size: $font-size-sm;
+        line-height: 1.6;
+        word-break: break-word;
+      }
+    }
+  }
+
+  &.success {
+    .results-header {
+      padding: $spacing-md;
+      border-bottom: 1px solid $color-border;
+      background-color: $color-bg-secondary;
+      flex-shrink: 0;
+
+      .results-info h4 {
+        margin: 0 0 $spacing-sm 0;
+        color: $color-text;
+        font-size: $font-size-lg;
+      }
+
+      .execution-stats {
+        display: flex;
+        gap: $spacing-md;
+        font-size: $font-size-sm;
+        color: $color-text-light;
+        flex-wrap: wrap;
+
+        .stat {
+          white-space: nowrap;
+
+          &.separator {
+            opacity: 0.5;
+          }
+        }
+      }
+    }
+
+    .table-wrapper {
+      flex: 1;
+      overflow: auto;
+      min-height: 0;
+
+      // Custom scrollbar
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $color-bg-secondary;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $color-border;
+        border-radius: 4px;
+
+        &:hover {
+          background: darken($color-border, 10%);
+        }
+      }
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: $font-size-sm;
+
+      thead {
+        background-color: $color-bg-secondary;
+        border-bottom: 2px solid $color-border;
+        position: sticky;
+        top: 0;
+
+        th {
+          padding: $spacing-sm $spacing-md;
+          text-align: left;
+          font-weight: 600;
+          color: $color-text;
+          cursor: pointer;
+          user-select: none;
+          white-space: nowrap;
+          transition: background-color 0.2s ease;
+
+          &.sortable:hover {
+            background-color: darken($color-bg-secondary, 5%);
+          }
+
+          .column-name {
+            word-break: break-word;
+          }
+
+          .sort-icon {
+            margin-left: $spacing-xs;
+            font-size: 0.75rem;
+            opacity: 0.6;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid $color-border;
+          transition: background-color 0.1s ease;
+
+          &:hover {
+            background-color: lighten($color-bg-secondary, 50%);
+          }
+
+          &:last-child {
+            border-bottom: none;
+          }
+
+          td {
+            padding: $spacing-sm $spacing-md;
+            color: $color-text;
+            word-break: break-word;
+            max-width: 400px;
+
+            @include responsive('mobile') {
+              max-width: 200px;
+            }
+          }
+        }
+      }
+    }
+
+    .no-results {
+      padding: $spacing-2xl $spacing-lg;
+      text-align: center;
+      color: $color-text-light;
+      font-style: italic;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .results-footer {
+      padding: $spacing-md;
+      border-top: 1px solid $color-border;
+      background-color: $color-bg-secondary;
+      display: flex;
+      justify-content: flex-end;
+      gap: $spacing-md;
+      flex-shrink: 0;
+
+      .btn-copy {
+        @include button-base;
+        background-color: $color-primary;
+        color: white;
+        padding: $spacing-sm $spacing-lg;
+
+        &:hover:not(:disabled) {
+          background-color: $color-primary-dark;
+        }
+      }
+    }
+  }
+}
+
+// Cell formatting
+.cell-null {
+  color: $color-text-light;
+  font-style: italic;
+  font-family: 'Courier New', monospace;
+}
+
+.cell-bool {
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+
+  &.true {
+    color: $color-success;
+  }
+
+  &.false {
+    color: $color-error;
+  }
+}
+
+.cell-number {
+  font-family: 'Courier New', monospace;
+  text-align: right;
+  display: block;
+}
+
+.cell-string {
+  font-family: 'Courier New', monospace;
+}
+
+// Animations
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

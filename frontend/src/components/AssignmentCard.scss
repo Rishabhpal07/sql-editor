@@ -1,0 +1,110 @@
+@import '../App.scss';
+
+.assignment-card {
+  display: block;
+  padding: $spacing-lg;
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+  @include shadow-sm;
+
+  &:hover {
+    @include shadow-md;
+    transform: translateY(-4px);
+    border-color: $color-primary;
+  }
+
+  .card-header {
+    @include flexbox(row, space-between, flex-start);
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+
+    .card-title {
+      margin: 0;
+      font-size: $font-size-lg;
+      color: $color-primary;
+      flex: 1;
+    }
+  }
+
+  .difficulty-badge {
+    display: inline-block;
+    padding: $spacing-xs $spacing-sm;
+    border-radius: 0.25rem;
+    font-size: $font-size-sm;
+    font-weight: 600;
+    white-space: nowrap;
+
+    &.difficulty-easy {
+      background-color: lighten($color-success, 35%);
+      color: darken($color-success, 20%);
+    }
+
+    &.difficulty-medium {
+      background-color: lighten($color-warning, 35%);
+      color: darken($color-warning, 20%);
+    }
+
+    &.difficulty-hard {
+      background-color: lighten($color-error, 35%);
+      color: darken($color-error, 20%);
+    }
+  }
+
+  .card-description {
+    margin: 0 0 $spacing-md 0;
+    color: $color-text-light;
+    line-height: 1.5;
+    font-size: $font-size-sm;
+  }
+
+  .card-footer {
+    @include flexbox(row, space-between, center);
+    padding-top: $spacing-md;
+    border-top: 1px solid $color-border;
+
+    .tables-info {
+      font-size: $font-size-sm;
+      color: $color-text-light;
+    }
+
+    .table-count {
+      display: inline-block;
+    }
+
+    .card-action {
+      font-size: $font-size-lg;
+      color: $color-primary;
+      transition: transform 0.2s ease;
+
+      .arrow {
+        display: inline-block;
+      }
+    }
+
+    &:hover .arrow {
+      transform: translateX(4px);
+    }
+  }
+
+  // Mobile adjustments
+  @include responsive('mobile') {
+    padding: $spacing-md;
+
+    .card-header {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .card-title {
+        font-size: $font-size-base;
+      }
+    }
+
+    .difficulty-badge {
+      align-self: flex-start;
+    }
+  }
+}

@@ -1,0 +1,127 @@
+@import '../App.scss';
+
+.data-preview {
+  background-color: $color-bg;
+  border: 1px solid $color-border;
+  border-radius: 0.5rem;
+  padding: $spacing-md;
+  overflow: hidden;
+
+  h4 {
+    margin: 0 0 $spacing-md 0;
+    font-size: $font-size-base;
+    color: $color-text;
+  }
+
+  .no-data {
+    color: $color-text-light;
+    font-style: italic;
+    text-align: center;
+    padding: $spacing-lg;
+    margin: 0;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    border: 1px solid $color-border;
+    border-radius: 0.375rem;
+    margin-bottom: $spacing-md;
+
+    &::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: $color-bg-secondary;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $color-border;
+      border-radius: 4px;
+
+      &:hover {
+        background: darken($color-border, 10%);
+      }
+    }
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: $font-size-sm;
+
+    thead {
+      background-color: $color-bg-secondary;
+      border-bottom: 2px solid $color-border;
+      position: sticky;
+      top: 0;
+    }
+
+    th {
+      padding: $spacing-sm $spacing-md;
+      text-align: left;
+      font-weight: 600;
+      color: $color-text;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid $color-border;
+
+      &:hover {
+        background-color: lighten($color-bg-secondary, 50%);
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: $spacing-sm $spacing-md;
+      color: $color-text;
+      word-break: break-word;
+      max-width: 250px;
+
+      @include responsive('tablet') {
+        max-width: 400px;
+      }
+    }
+  }
+
+  .null-value {
+    color: $color-text-light;
+    font-style: italic;
+    font-family: 'Courier New', monospace;
+  }
+
+  .bool-value {
+    font-weight: 600;
+    font-family: 'Courier New', monospace;
+
+    &.true {
+      color: $color-success;
+    }
+
+    &.false {
+      color: #ef4444;
+    }
+  }
+
+  .number-value {
+    font-family: 'Courier New', monospace;
+    text-align: right;
+    display: block;
+  }
+
+  .string-value {
+    font-family: 'Courier New', monospace;
+  }
+
+  .row-count {
+    margin: 0;
+    font-size: $font-size-sm;
+    color: $color-text-light;
+    text-align: right;
+  }
+}
