@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { api } from '../api';
 import SQLEditor from '../components/SQLEditor';
@@ -21,19 +21,12 @@ export default function AttemptPage() {
   const [hint, setHint] = useState(null);
   const [hintLoading, setHintLoading] = useState(false);
 
-  
-  useEffect(() => {
-    fetchAssignment();
-  }, [id]);
-  
-  useEffect(() => {
-  fetchAssignment();
-}, [fetchAssignment]);
-
-  const fetchAssignment = async () => {
+  // ✅ FIXED: useCallback for stable reference
+  const fetchAssignment = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
+
       const response = await api.getAssignment(id);
       setAssignment(response.data);
     } catch (err) {
@@ -41,7 +34,12 @@ export default function AttemptPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [id]);
+
+  // ✅ Only ONE useEffect
+  useEffect(() => {
+    fetchAssignment();
+  }, [fetchAssignment]);
 
   const handleExecute = async (sql) => {
     try {
@@ -72,6 +70,7 @@ export default function AttemptPage() {
     try {
       setHintLoading(true);
       setError(null);
+
       const response = await api.getHint(id, query);
       setHint(response.data.hint);
     } catch (err) {
