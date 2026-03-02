@@ -2,12 +2,12 @@ import pg from 'pg';
 import { config } from '../config.js';
 
 const { Pool } = pg;
-
+ console.log("DATABASE_URL:", process.env.DATABASE_URL);
 const pool = new Pool({
-  host: config.postgres.host,
-  port: config.postgres.port,
-  database: config.postgres.database,
-  user: config.postgres.user,
+   connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false
+  }
 });
 
 pool.on('error', (err) => {
