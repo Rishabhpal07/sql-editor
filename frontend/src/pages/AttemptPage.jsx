@@ -20,11 +20,15 @@ export default function AttemptPage() {
   const [executionTime, setExecutionTime] = useState(null);
   const [hint, setHint] = useState(null);
   const [hintLoading, setHintLoading] = useState(false);
+
   
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     fetchAssignment();
   }, [id]);
+  
+  useEffect(() => {
+  fetchAssignment();
+}, [fetchAssignment]);
 
   const fetchAssignment = async () => {
     try {

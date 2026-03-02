@@ -11,7 +11,7 @@ export default function AssignmentList() {
 
   useEffect(() => {
     fetchAssignments();
-  }, []);
+  }, [fetchAssignments]);
 
   const fetchAssignments = async () => {
     try {
