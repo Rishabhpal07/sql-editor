@@ -163,3 +163,8 @@ Query validation engine
 Dockerized deployment
 
 CI/CD pipeline
+
+👨‍💻 Author
+
+Rishabh Pal
+Full-stack developer | Building real-world projects
