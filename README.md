@@ -7,7 +7,7 @@ A full-stack SQL learning platform where users can practice real SQL queries, ex
 Built with a modern production-ready architecture.
 
 🚀 Live Demo
-https://your-frontend.vercel.app
+[https://your-frontend.vercel.app](https://sql-editor-lsop.vercel.app)
 
 ✨ Features
 
